@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+<br><br><br>
+<div class="logo-container">
+  <div class="logo-child">SPLI</div>
+  <div class="logo-child">TTER</div>
+</div>
+
+<br><br>
+<div class="main-container">
+  <div class="grid-item first-container">
+
+    <div class="bill-container">
+      <div class="div-label"><label for="">Bill</label></div>
+      <div class="txt-p-container"><i class="fa-solid fa-dollar-sign"></i><input type="number" min="0" placeholder="0" class="no-text" id="numBill"></div>
+    </div>
+
+    <br>
+    <div class="div-label">
+      <label>Select Tip %</label>
+    </div>
+
+    <div class="btn-percentage-container">
+      <div><button class="btn-calc" id="btnFive">5%</button></div>
+      <div><button class="btn-calc" id="btnTen">10%</button></div>
+      <div><button class="btn-calcz" id="btnOneFive">15%</button></div>
+      <div><button class="btn-calc" id="btnTwoFive">25%</button></div>
+      <div><button class="btn-calc" id="btnFiveZero">50%</button></div>
+      <div><input type="number" min="0" class="btn-calcs" placeholder="Custom" id="customTip"></div>
+    </div>
+
+    <br><br>
+
+    <div class="bill-container">
+      <div class="div-label"><label for="">Number of People</label></div>
+      <div class="txt-p-container"><i class="fa-solid fa-user"></i><input type="number"  min="0" placeholder="0" class="no-text" id="numPeople"></div>
+    </div>
+
+
+  </div>
+
+  <div class="grid-item second-container">
+
+    <div class="amount-container">
+
+    <div class="tip-content">
+     <div class="t-div"><span class="t-amount">Tip Amount<p class="t-amounts">/ person</p></span></div>
+      <span class="tip-amount"><p class="p-amount" id="personTip">$0</p></span>
+    </div>
+   <div class="total-content">
+    <div class="a-div"><span class="t-amount">Total <p class="t-amounts">/ person</p></span> </div>
+    <span><p class="p-amount" id="totalTipPerson">$0</p></span>
+   </div>
+   
+   <br><br><br>
+  </div>
+
+   <div>
+      <button class="btn-reset" id="btnReset">RESET</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script defer>
+  const numBill = document.getElementById("numBill");
+  const numPeople = document.getElementById("numPeople");
+
+  const personTip = document.getElementById("personTip");
+  const totalTipPerson = document.getElementById("totalTipPerson");
+
+  // btns
+  const btnFive = document.getElementById("btnFive");
+  const btnTen = document.getElementById("btnTen");
+  const btnOneFive = document.getElementById("btnOneFive");
+  const btnTwoFive = document.getElementById("btnTwoFive");
+  const btnFiveZero = document.getElementById("btnFiveZero");
+  const customTip = document.getElementById("customTip");
+  const btnReset = document.getElementById("btnReset");
+  
+  function totalTips(numBill, numPeople, customTip, perc) {
+    let tipPerPerson;
+    let totalTipPerPerson;
+    tipPerPerson = numBill * perc;
+    totalTipPerPerson = tipPerPerson * numPeople;
+
+    personTip.textContent =  '$' + parseFloat(tipPerPerson).toFixed(2); 
+    totalTipPerson.textContent = '$' + parseFloat(totalTipPerPerson).toFixed(2); 
+
+  }
+
+  // .05%
+  btnFive.addEventListener("click", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, .05)
+  })
+
+  // .10%
+  btnTen.addEventListener("click", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, .10)
+  })
+
+  // .15%
+  btnOneFive.addEventListener("click", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, .15)
+  })
+
+  // .25%
+  btnTwoFive.addEventListener("click", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, .25)
+  })
+
+   // .50%
+   btnFiveZero.addEventListener("click", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, .50)
+  })
+
+  // custom tip 
+  customTip.addEventListener("mousemove", () => {
+    totalTips(numBill.value, numPeople.value, customTip.value, customTip.value)
+  })
+
+  // reset
+  btnReset.addEventListener("click", () => {
+    numBill.value = 0;
+    numPeople.value = 0;
+    customTip.value = '';
+  })
+
+
+
+ 
+
+
+</script>
+</body>
+</html>
