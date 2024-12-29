@@ -95,11 +95,11 @@
   const customTip = document.getElementById("customTip");
   const btnReset = document.getElementById("btnReset");
   
-  function totalTips(numBill, numPeople, customTip, perc) {
+function totalTips(numBill, numPeople, customTip, perc) {
     let tipPerPerson;
     let totalTipPerPerson;
-    tipPerPerson = numBill * perc;
-    totalTipPerPerson = tipPerPerson * numPeople;
+    tipPerPerson = numBill * perc / numPeople;
+    totalTipPerPerson = numBill / numPeople + tipPerPerson;
 
     personTip.textContent =  '$' + parseFloat(tipPerPerson).toFixed(2); 
     totalTipPerson.textContent = '$' + parseFloat(totalTipPerPerson).toFixed(2); 
